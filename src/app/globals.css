@@ -1,27 +1,149 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* global.css */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #121212; /* Dark theme */
+  color: #E0E0E0;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #1e1e1e;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #FFD700; /* Vibrant gold */
+  margin-bottom: 20px;
+}
+
+input[type="number"], button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background-color: #2c2c2c;
+  color: #E0E0E0;
+}
+
+input[type="number"]:focus {
+  border-color: #FFD700; /* Gold focus color */
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.7); /* Gold shadow */
+}
+
+.gender-selection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.gender-selection button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background-color: #3a3a3a;
+  color: #E0E0E0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.gender-selection button.active {
+  background-color: #2196F3; /* Vibrant blue */
+}
+
+.gender-selection button:hover {
+  background-color: #FFD700; /* Gold on hover */
+}
+
+.height-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.height-input input {
+  width: 48%;
+}
+
+button {
+  background-color: #FF9800; /* Vibrant orange */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #F57C00; /* Darker orange */
+  transform: scale(1.05);
+}
+
+.bmi-result {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  color: #FFD700; /* Gold result */
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 30px;
+  color: #888;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px; /* Reduce padding on smaller screens */
+  }
+
+  h1 {
+    font-size: 2rem; /* Slightly smaller heading */
+  }
+
+  input[type="number"], button {
+    font-size: 1rem; /* Adjust font size for inputs and buttons */
+  }
+
+  .gender-selection {
+    flex-direction: column; /* Stack gender buttons on smaller screens */
+  }
+
+  .gender-selection button {
+    width: 100%; /* Full width for buttons */
+    margin-bottom: 10px; /* Space between buttons */
+  }
+
+  .height-input {
+    flex-direction: column; /* Stack height inputs */
+  }
+
+  .height-input input {
+    width: 100%; /* Full width for height inputs */
+    margin-bottom: 10px; /* Space between inputs */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.8rem; /* Further reduce heading size */
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .bmi-result {
+    font-size: 1.2rem; /* Adjust result size */
+  }
+
+  button {
+    font-size: 0.9rem; /* Adjust button font size */
   }
 }

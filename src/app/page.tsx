@@ -1,100 +1,112 @@
-import Image from "next/image";
+'use client'
+import { useState } from 'react';
 
-export default function Home() {
+export default function BmiCalculator() {
+  const [gender, setGender] = useState<string | null>(null);
+  const [age, setAge] = useState<number | null>(null);
+  const [feet, setFeet] = useState<number | null>(null);
+  const [inches, setInches] = useState<number | null>(null);
+  const [cm, setCm] = useState<number | null>(null);
+  const [weight, setWeight] = useState<number | null>(null);
+  const [bmi, setBmi] = useState<number | null>(null);
+  const [category, setCategory] = useState<string>('');
+
+  const calculateBMI = () => {
+    let heightInCm = 0;
+
+    
+    if (feet && inches) {
+      heightInCm = feet * 30.48 + inches * 2.54;
+    } else if (cm) {
+      heightInCm = cm; // Use cm input if available
+    }
+
+    if (weight && heightInCm > 0) {
+      // Calculate BMI
+      const bmiValue = Number((weight / (heightInCm / 100) ** 2).toFixed(1));
+      setBmi(bmiValue);
+
+      // Determine BMI category
+      if (bmiValue < 18.5) setCategory('Underweight');
+      else if (bmiValue < 24.9) setCategory('Normal');
+      else if (bmiValue < 29.9) setCategory('Overweight');
+      else setCategory('Obese');
+    }
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="container">
+      <h1>BMI Calculator</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Gender Selection */}
+      <div className="gender-selection">
+        <button
+          className={gender === 'Male' ? 'active' : ''}
+          onClick={() => setGender('Male')}
+        >
+          Male
+        </button>
+        <button
+          className={gender === 'Female' ? 'active' : ''}
+          onClick={() => setGender('Female')}
+        >
+          Female
+        </button>
+      </div>
+
+      {/* Age Input */}
+      <input
+        type="number"
+        placeholder="Age"
+        value={age ?? ''}
+        onChange={(e) => setAge(Number(e.target.value))}
+      />
+
+      {/* Height Input: Feet & Inches */}
+      <div className="height-input">
+        <input
+          type="number"
+          placeholder="Feet"
+          value={feet ?? ''}
+          onChange={(e) => setFeet(Number(e.target.value))}
+        />
+        <input
+          type="number"
+          placeholder="Inches"
+          value={inches ?? ''}
+          onChange={(e) => setInches(Number(e.target.value))}
+        />
+      </div>
+
+      {/* Height Input: cm */}
+      <input
+        type="number"
+        placeholder="Height (cm)"
+        value={cm ?? ''}
+        onChange={(e) => setCm(Number(e.target.value))}
+      />
+
+      {/* Weight Input */}
+      <input
+        type="number"
+        placeholder="Weight (kg)"
+        value={weight ?? ''}
+        onChange={(e) => setWeight(Number(e.target.value))}
+      />
+
+      {/* Calculate Button */}
+      <button onClick={calculateBMI}>Calculate BMI</button>
+
+      {/* BMI Result */}
+      {bmi && (
+        <div className="bmi-result">
+          <p>Your BMI: {bmi}</p>
+          <p>Category: {category}</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      )}
+
+      <footer>
+        © All Rights Reserved, BMI Calculator by Yemna Mehmood
       </footer>
     </div>
   );
