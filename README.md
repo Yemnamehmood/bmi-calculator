@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# BMI Calculator
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The BMI Calculator is a web application designed to help users easily calculate their Body Mass Index (BMI). Built with Next.js and TypeScript, this tool allows users to input their height, weight, age, and gender. Upon submitting the data, users receive their BMI value along with a category classification, which includes underweight, normal, overweight, and obese. The application features a vibrant dark theme and a user-friendly interface, making it accessible on both desktop and mobile devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Functionalities
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **User Inputs**: 
+  - Height (in cm, allowing for formats like 5'5")
+  - Weight (in kg)
+  - Age
+  - Gender (male or female)
+  
+- **BMI Calculation**: The app calculates BMI based on the provided height and weight.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **BMI Categories**: After calculation, the app displays the BMI value along with a corresponding category (underweight, normal, overweight, or obese).
 
-## Learn More
+- **Responsive Design**: The layout is optimized for both mobile and desktop screens, ensuring a seamless user experience across devices.
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**:
+  - Next.js for server-side rendering and routing.
+  - TypeScript for type safety and improved code quality.
+  - CSS for custom styling and responsive design.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Installation Instructions
 
-## Deploy on Vercel
+To run the BMI Calculator locally, follow these steps:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the necessary dependencies using npm.
+4. Start the development server.
+5. Open your browser and go to the specified local URL to view the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Acknowledgements
+
+- Thanks to the Next.js and TypeScript communities for their excellent documentation and resources.
+- Inspired by various online tools and applications focused on health and fitness.
+
